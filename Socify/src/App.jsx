@@ -1,12 +1,18 @@
-import { useState } from 'react'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // ✅ FIXED
+import Signup from "./pages/Signup/Signup";
 
 function App() {
   return (
-    <>
-      <h1 className='text-3xl text-blue-600 font-bold'>Welcome to Socify</h1>
-    </>
-  )
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<div>Home Page</div>} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;

@@ -30,16 +30,19 @@ const AuthLayout = ({ children, title, subtitle, illustration }) => {
                       "https://illustrations.popsy.co/amber/calling.svg"
                     }
                     alt="Signup illustration"
-                    className="relative z-10 w-full max-w-md mx-auto"                   
+                    className="relative z-10 w-full max-w-md mx-auto"
                   />
                   <div className="mt-8 text-center">
                     <p className="text-lg text-gray-700 dark:text-gray-300 font-medium">
-                        Join thousands of creators sharing their stories
+                      Join thousands of creators sharing their stories
                     </p>
                     <div className="flex justify-center gap-4 mt-4">
-                        {[1,2,3,4].map((i) => (
-                            <div key={i} className="w-2 h-2 rounded-full bg-linear-to-r from-blue-600 to-purple-600"></div>
-                        ))}
+                      {[1, 2, 3, 4].map((i) => (
+                        <div
+                          key={i}
+                          className="w-2 h-2 rounded-full bg-linear-to-r from-blue-600 to-purple-600"
+                        ></div>
+                      ))}
                     </div>
                   </div>
                 </div>
