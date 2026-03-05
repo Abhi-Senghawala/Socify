@@ -32,7 +32,7 @@ const LoginForm = ({
   handleSocialLogin,
 }) => {
   return (
-    <div className="relative group mt-10">
+    <div className="relative group mt-10 mb-5">
       <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-1000"></div>
 
       <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 space-y-6">

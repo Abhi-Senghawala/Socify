@@ -1,3 +1,4 @@
+// This is useAuth component is for Signup page.
 import { useState, useEffect } from "react";
 
 export const useAuth = () => {

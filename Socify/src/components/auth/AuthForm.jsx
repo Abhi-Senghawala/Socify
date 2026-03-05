@@ -1,3 +1,4 @@
+// This is a Signup page AuthForm
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -37,7 +38,7 @@ const AuthForm = ({
   const strengthData = passwordStrength;
 
   return (
-    <div className="relative group">
+    <div className="relative group mt-5 mb-5">
       {/* Glow Effect */}
       <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-1000"></div>
 

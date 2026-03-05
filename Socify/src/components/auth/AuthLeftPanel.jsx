@@ -1,3 +1,4 @@
+// This AuthLeftPanel is for Signup page 
 import React from "react";
 import { Sparkles, Zap, Shield, Globe, Star } from "lucide-react";
 
