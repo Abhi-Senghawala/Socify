@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import {
   Home,
   Search,
-  Clapperboard,
+  SquarePlay,
+  MessageCircle,
   User,
   Heart,
-  PlusSquare,
   LogOut,
+  Settings,
 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -18,8 +19,8 @@ const MobileBottomBar = () => {
   const items = [
     { icon: Home, path: "/", label: "Home" },
     { icon: Search, path: "/search", label: "Search" },
-    { icon: PlusSquare, path: "/create", label: "Create", isSpecial: true },
-    { icon: Clapperboard, path: "/reels", label: "Reels" },
+    { icon: MessageCircle, path: "/messenger", label: "Messenger" },
+    { icon: SquarePlay, path: "/reels", label: "Reels" },
     { icon: User, path: "/profile", label: "Profile", hasLogout: true },
   ];
 
@@ -100,7 +101,7 @@ const MobileBottomBar = () => {
                         className="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors"
                         onClick={() => setShowLogoutMenu(false)}
                       >
-                        <Heart size={18} className="text-pink-400" />
+                        <Settings size={18} className="text-pink-400" />
                         <span className="text-sm text-white">Settings</span>
                       </Link>
                       <div className="border-t border-white/10 my-1"></div>

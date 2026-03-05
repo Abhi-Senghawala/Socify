@@ -3,7 +3,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Home,
   Search,
-  Clapperboard,
+  SquarePlay,
+  Send,
   User,
   Heart,
   Sparkles,
@@ -21,7 +22,8 @@ const DesktopSidebar = () => {
   const navItems = [
     { name: "Home", icon: Home, path: "/" },
     { name: "Search", icon: Search, path: "/search" },
-    { name: "Reels", icon: Clapperboard, path: "/reels" },
+    { name: "Reels", icon: SquarePlay, path: "/reels" },
+    { name: "Messenger", icon: Send, path: "/messenger" },
     { name: "Notifications", icon: Heart, path: "/notifications" },
     { name: "Profile", icon: User, path: "/profile" },
   ];
@@ -209,23 +211,6 @@ const DesktopSidebar = () => {
             )}
           </div>
         </div>
-
-        {/* User profile preview (when expanded) */}
-        {expanded && (
-          <div className="mx-3 mb-4 p-3 rounded-xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-white/10">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
-                JD
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-white truncate">
-                  John Doe
-                </p>
-                <p className="text-xs text-gray-400 truncate">@johndoe</p>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
       {showLogoutConfirm && !expanded && (
         <div className="absolute left-20 bottom-24 ml-2 p-4 bg-gray-900 rounded-xl border border-white/10 shadow-2xl animate-slideUp w-48">
