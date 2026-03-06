@@ -1,8 +1,8 @@
 import React from "react";
 import Layout from "../../components/layout/Layout";
 import { useFeed, FeedProvider } from "../../context/FeedContext";
-import PostCard from "../../components/feed/PostCard";
-import StoriesSection from "../../components/feed/StoriesSection";
+import PostCard from "../../components/posts/PostCard";
+import StoriesSection from "../../components/stories/StoriesSection";
 import SuggestionsSidebar from "../../components/feed/SuggestionSidebar";
 
 const HomeContent = () => {

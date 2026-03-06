@@ -198,7 +198,7 @@ const mockPosts = [
     timeAgo: "2 d",
     content: "Beautiful sunset at the beach! 🌅 #beachlife #sunset",
     image:
-      "https://i.pinimg.com/736x/bb/98/f9/bb98f90f5a430820a155faa77d5da456.jpg",
+      "https://i.pinimg.com/736x/6e/1b/49/6e1b499386ce35fc0e3470faadbb1e15.jpg",
     likes: 1234,
     comments: [
       {
@@ -261,7 +261,7 @@ const mockPosts = [
     timeAgo: "1 d",
     content: "Enjoy Life...",
     image:
-      "https://i.pinimg.com/736x/e2/ea/db/e2eadbd0640b4b01843277037e7c3d14.jpg",
+      "https://i.pinimg.com/736x/8b/3f/01/8b3f019521e363035da9b2e1537056b4.jpg",
     likes: 15234,
     comments: [
       {
