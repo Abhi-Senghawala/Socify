@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { X, UserPlus, ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useFeed } from "../../context/FeedContext";
+import About from "../../pages/About/About";
 
 const SuggestionCard = ({ user }) => {
   const [followed, setFollowed] = useState(false);
@@ -104,9 +106,9 @@ const SuggestionsSidebar = () => {
         </div>
         <div className="space-y-4">
           <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs text-gray-600">
-            <a href="#" className="hover:underline whitespace-nowrap">
+            <Link to="/about" className="hover:underline whitespace-nowrap">
               About
-            </a>
+            </Link>
             <span>·</span>
             <a href="#" className="hover:underline whitespace-nowrap">
               Help
