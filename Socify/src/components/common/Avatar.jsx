@@ -15,7 +15,7 @@ const Avatar = ({ src, username, size = 'md', className = '' }) => {
     return (
         <div className={`relative ${sizes[size]} rounded-full overflow-hidden ${className}`}>
             {src ? (<img src={src} alt={username} className="w-full h-full object-cover" />) : (
-                <div className="w-full h-full `bg-gradient-to-r` from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">{getInitials(username)}</div>
+                <div className="w-full h-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">{getInitials(username)}</div>
             )}
         </div>
     );

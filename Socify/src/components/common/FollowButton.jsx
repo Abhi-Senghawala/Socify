@@ -13,7 +13,7 @@ const FollowButton = ({ isFollowing, onFollow, size = 'md' }) => {
             onClick={onFollow}
             className={`flex items-center justify-center gap-2 rounded-xl font-semibold transition-all ${isFollowing
                     ? "bg-white/5 text-white hover:bg-white/10 border border-white/10"
-                    : "`bg-gradient-to-r` from-purple-500 to-pink-500 text-white hover:shadow-lg hover:shadow-purple-500/25"
+                    : "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-lg hover:shadow-purple-500/25"
                 } ${sizes[size]}`}
         >
             {isFollowing ? (
