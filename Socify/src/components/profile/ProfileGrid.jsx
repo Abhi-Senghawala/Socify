@@ -31,7 +31,7 @@ const ProfileGrid = ({ posts, onPostClick, loadingMore }) => {
             loading="lazy"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute inset-0 `bg-gradient-to-t` from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-2 left-2 right-2 flex items-center justify-around text-white">
               <div className="flex items-center gap-1">
                 <Heart size={16} className="fill-white" />

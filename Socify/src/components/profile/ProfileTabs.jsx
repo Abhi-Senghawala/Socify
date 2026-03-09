@@ -28,7 +28,7 @@ const ProfileTabs = ({ activeTab, onTabChange, isCurrentUser }) => {
               <Icon size={20} />
               <span>{tab.label}</span>
               {isActive && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 `bg-gradient-to-r` from-purple-500 to-pink-500"></div>
               )}
             </button>
           );

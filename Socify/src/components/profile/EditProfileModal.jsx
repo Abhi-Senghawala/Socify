@@ -44,7 +44,7 @@ const EditProfileModal = ({ profile, onSave, onClose }) => {
         >
           <div className="flex items-center gap-4 mb-6">
             <div className="relative">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></div>
+              <div className="w-16 h-16 rounded-full `bg-gradient-to-r` from-purple-500 to-pink-500"></div>
               <button className="absolute bottom-0 right-0 w-6 h-6 bg-gray-800 rounded-full border-2 border-gray-900 flex items-center justify-center hover:bg-gray-700 transition-colors">
                 <Camera size={12} className="text-white" />
               </button>
@@ -176,7 +176,7 @@ const EditProfileModal = ({ profile, onSave, onClose }) => {
             </button>
             <button
               type="submit"
-              className="flex-1 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl text-white font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all"
+              className="flex-1 px-4 py-3 `bg-gradient-to-r` from-purple-500 to-pink-500 rounded-xl text-white font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all"
             >
               Save Changes
             </button>

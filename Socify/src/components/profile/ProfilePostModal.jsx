@@ -43,7 +43,7 @@ const ProfilePostModal = ({ post, onClose }) => {
           <div className="lg:w-2/5 h-1/2 lg:h-full bg-gray-900/95 backdrop-blur-sm border-l border-white/10 flex flex-col">
             <div className="p-4 border-b border-white/10 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></div>
+                <div className="w-8 h-8 rounded-full `bg-gradient-to-r` from-purple-500 to-pink-500"></div>
                 <div>
                   <p className="text-white font-semibold text-sm">username</p>
                   {post.location && (
@@ -58,7 +58,7 @@ const ProfilePostModal = ({ post, onClose }) => {
 
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
               <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex-shrink-0"></div>
+                <div className="w-8 h-8 rounded-full `bg-gradient-to-r` from-purple-500 to-pink-500 `flex-shrink-0`"></div>
                 <div>
                   <p className="text-white text-sm">
                     <span className="font-semibold">username</span>{" "}
@@ -69,7 +69,7 @@ const ProfilePostModal = ({ post, onClose }) => {
               </div>
 
               <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex-shrink-0"></div>
+                <div className="w-8 h-8 rounded-full `bg-gradient-to-r` from-blue-500 to-cyan-500 `flex-shrink-0`"></div>
                 <div>
                   <p className="text-white text-sm">
                     <span className="font-semibold">user2</span> Amazing shot!

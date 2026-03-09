@@ -44,7 +44,7 @@ const ProfileHeader = ({
           alt="Cover"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+        <div className="absolute inset-0 `bg-gradient-to-t` from-gray-900/50 to-transparent"></div>
 
         {isCurrentUser && (
           <button
@@ -68,7 +68,7 @@ const ProfileHeader = ({
             className="border-4 border-gray-900"
           />
           {profile?.verified && (
-            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center border-2 border-gray-900">
+            <div className="absolute -bottom-1 -right-1 w-6 h-6 `bg-gradient-to-r` from-purple-500 to-pink-500 rounded-full flex items-center justify-center border-2 border-gray-900">
               <Check size={14} className="text-white" />
             </div>
           )}
@@ -121,7 +121,7 @@ const ProfileHeader = ({
 
         <div className="flex sm:hidden gap-6 overflow-x-auto pb-2 mb-4 scrollbar-hide">
           {stats.map((stat, index) => (
-            <div key={index} className="flex-shrink-0 text-center">
+            <div key={index} className="`flex-shrink-0` text-center">
               <span className="block text-white font-bold text-lg">
                 {stat.value}
               </span>
