@@ -5,6 +5,7 @@ import Login from "./pages/Login/Login";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:username" element={<Profile />} />
           <Route path="/about" element={<About />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
