@@ -40,8 +40,6 @@
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Add to your global CSS */
-
 /* Custom scrollbar for webkit browsers */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;

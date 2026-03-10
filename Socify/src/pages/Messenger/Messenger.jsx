@@ -1,12 +1,13 @@
 import React from "react";
 import Layout from "../../components/layout/Layout";
-import { useMessenger } from "../../hooks/useMessenger";
+import { SocketProvider } from "../../context/SocketContext";
+import { useSocketMessenger } from "../../hooks/useSocketMessenger";
 import ChatList from "../../components/messenger/ChatList";
 import ChatWindow from "../../components/messenger/ChatWindow";
 import ChatInfo from "../../components/messenger/ChatInfo";
 import NewChatModal from "../../components/messenger/NewChatModal";
 
-const Messenger = () => {
+const MessengerContent = () => {
   const {
     chats,
     messages,
@@ -16,6 +17,7 @@ const Messenger = () => {
     showChatInfo,
     showNewChatModal,
     searchQuery,
+    isConnected,
     typingUsers,
     hasMore,
     loadingMore,
@@ -27,10 +29,8 @@ const Messenger = () => {
     sendMessage,
     handleTyping,
     loadMoreMessages,
-    handleReaction,
-    handleDeleteMessage,
-    startNewChat,
-  } = useMessenger();
+    deleteMessage,
+  } = useSocketMessenger();
 
   if (loading) {
     return (
@@ -48,7 +48,6 @@ const Messenger = () => {
   return (
     <Layout>
       <div className="h-[calc(100vh-5rem)] flex rounded-2xl overflow-hidden border border-white/10 bg-gray-900/50 backdrop-blur-sm">
-        {/* Chat List */}
         <ChatList
           chats={chats}
           selectedChat={selectedChat}
@@ -58,25 +57,23 @@ const Messenger = () => {
           onNewChat={() => setShowNewChatModal(true)}
         />
 
-        {/* Chat Window */}
         <ChatWindow
           selectedChat={selectedChat}
           messages={messages}
           sending={sending}
           loading={loading}
           typingUsers={typingUsers}
+          isConnected={isConnected}
           messagesEndRef={messagesEndRef}
           onSendMessage={sendMessage}
           onTyping={handleTyping}
           onLoadMore={loadMoreMessages}
           hasMore={hasMore}
           loadingMore={loadingMore}
-          onReaction={handleReaction}
-          onDeleteMessage={handleDeleteMessage}
+          onDeleteMessage={deleteMessage}
           onToggleInfo={() => setShowChatInfo(!showChatInfo)}
         />
 
-        {/* Chat Info Sidebar */}
         {showChatInfo && selectedChat && (
           <ChatInfo
             chat={selectedChat}
@@ -85,14 +82,24 @@ const Messenger = () => {
         )}
       </div>
 
-      {/* New Chat Modal */}
       {showNewChatModal && (
         <NewChatModal
           onClose={() => setShowNewChatModal(false)}
-          onStartChat={startNewChat}
+          onStartChat={(user) => {
+            // Handle new chat
+            setShowNewChatModal(false);
+          }}
         />
       )}
     </Layout>
+  );
+};
+
+const Messenger = () => {
+  return (
+    <SocketProvider>
+      <MessengerContent />
+    </SocketProvider>
   );
 };
 

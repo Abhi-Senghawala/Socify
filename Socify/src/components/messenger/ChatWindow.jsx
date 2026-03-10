@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ChatHeader from "./ChatHeader";
 import MessageBubble from "./MessageBubble";
 import MessageInput from "./MessageInput";
-import { Loader } from "lucide-react";
+import TypingIndicator from "./TypingIndicator";
+import { Loader, WifiOff } from "lucide-react";
 
 const ChatWindow = ({
   selectedChat,
@@ -10,16 +11,22 @@ const ChatWindow = ({
   sending,
   loading,
   typingUsers,
+  isConnected,
   messagesEndRef,
   onSendMessage,
   onTyping,
   onLoadMore,
   hasMore,
   loadingMore,
-  onReaction,
   onDeleteMessage,
   onToggleInfo,
 }) => {
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
   if (!selectedChat) {
     return (
       <div className="flex-1 flex items-center justify-center bg-gray-900/30">
@@ -50,17 +57,27 @@ const ChatWindow = ({
     );
   }
 
+  const isTyping = typingUsers.has(selectedChat.id);
+
   return (
     <div className="flex-1 flex flex-col h-full bg-gray-900/30">
+      {!isConnected && (
+        <div className="bg-red-500/10 border-b border-red-500/20 p-2 flex items-center justify-center gap-2">
+          <WifiOff size={14} className="text-red-400" />
+          <span className="text-xs text-red-400">
+            Connection lost. Reconnecting...
+          </span>
+        </div>
+      )}
+
       <ChatHeader
         chat={selectedChat}
         onToggleInfo={onToggleInfo}
-        typingUsers={typingUsers}
+        isTyping={isTyping}
+        isOnline={selectedChat.user.isOnline}
       />
 
-      {/* Messages Container */}
       <div className="flex-1 overflow-y-auto p-4 scrollbar-thin">
-        {/* Load More */}
         {hasMore && (
           <div className="text-center mb-4">
             <button
@@ -77,7 +94,6 @@ const ChatWindow = ({
           </div>
         )}
 
-        {/* Messages */}
         <div className="space-y-3">
           {messages.map((message, index) => {
             const showDate =
@@ -102,39 +118,23 @@ const ChatWindow = ({
                 <MessageBubble
                   message={message}
                   isMe={message.senderId === "current_user"}
-                  onReaction={onReaction}
                   onDelete={onDeleteMessage}
                 />
               </React.Fragment>
             );
           })}
+
+          {isTyping && <TypingIndicator user={selectedChat.user} />}
+
           <div ref={messagesEndRef} />
         </div>
-
-        {/* Typing Indicator */}
-        {typingUsers.size > 0 && (
-          <div className="flex items-center gap-2 mt-2">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
-              <span className="text-white text-xs font-bold">
-                {selectedChat.user.name.charAt(0)}
-              </span>
-            </div>
-            <div className="bg-white/5 rounded-2xl px-4 py-2">
-              <div className="flex gap-1">
-                <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></span>
-                <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce animation-delay-200"></span>
-                <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce animation-delay-400"></span>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* Message Input */}
       <MessageInput
         onSendMessage={onSendMessage}
         onTyping={onTyping}
         sending={sending}
+        disabled={!isConnected}
       />
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; 
 import {
   Mail,
   Lock,
@@ -31,6 +31,18 @@ const LoginForm = ({
   handleSubmit,
   handleSocialLogin,
 }) => {
+  const navigate = useNavigate(); 
+
+  const handleSignin = (e) => {
+    e.preventDefault(); 
+    if (handleSubmit) {
+      handleSubmit(e);
+    }
+    setTimeout(() => {
+      navigate("/");
+    }, 2000); 
+  };
+
   return (
     <div className="relative group mt-10 mb-5">
       <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-1000"></div>
@@ -49,7 +61,6 @@ const LoginForm = ({
           </div>
         )}
 
-        {/* Header Section*/}
         <div className="text-center">
           <div className="flex justify-center mb-4">
             <div className="p-3 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500">
@@ -62,8 +73,8 @@ const LoginForm = ({
           <p className="text-gray-400 mt-2">Sign in to continue your journey</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Email Input */}
+        <form onSubmit={handleSignin} className="space-y-5">
+          {" "}
           <Input
             type="email"
             name="email"
@@ -78,8 +89,6 @@ const LoginForm = ({
             floating={true}
             focused={focusedField === "email" || formData.email}
           />
-
-          {/* Password Input */}
           <div>
             <Input
               type={showPassword ? "text" : "password"}
@@ -98,7 +107,6 @@ const LoginForm = ({
               onRightIconClick={() => setShowPassword(!showPassword)}
             />
 
-            {/* Forgot Password Link */}
             <div className="flex justify-end mt-1">
               <Link
                 to="/forgot-password"
@@ -108,8 +116,6 @@ const LoginForm = ({
               </Link>
             </div>
           </div>
-
-          {/* Remember Me Checkbox */}
           <div className="space-y-2">
             <label className="flex items-center gap-3 cursor-pointer group">
               <input
@@ -132,10 +138,8 @@ const LoginForm = ({
               </span>
             </label>
           </div>
-
-          {/* Submit Button */}
           <Button
-            type="submit"
+            type="submit" 
             variant="primary"
             size="lg"
             fullWidth
@@ -149,8 +153,6 @@ const LoginForm = ({
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </Button>
-
-          {/* Social Login */}
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-white/10"></div>
@@ -161,7 +163,6 @@ const LoginForm = ({
               </span>
             </div>
           </div>
-
           <div className="grid grid-cols-3 gap-3">
             {[
               {
@@ -192,7 +193,6 @@ const LoginForm = ({
               </button>
             ))}
           </div>
-
           <p className="text-center text-sm text-gray-400">
             Don't have an account?{" "}
             <Link
@@ -202,7 +202,6 @@ const LoginForm = ({
               Create account
             </Link>
           </p>
-
           {errors.submit && (
             <p className="text-sm text-pink-400 text-center animate-shake">
               {errors.submit}
