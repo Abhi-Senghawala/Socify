@@ -13,7 +13,7 @@ const SuggestionCard = ({ user }) => {
     <div className="flex items-center justify-between group">
       <div className="flex items-center gap-3 min-w-0 flex-1">
         <div className="relative `flex-shrink-0`">
-          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full `bg-gradient-to-r` from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm">
             {user.avatar}
           </div>
           <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-900"></div>
@@ -23,7 +23,7 @@ const SuggestionCard = ({ user }) => {
             <p className="text-white text-xs sm:text-sm font-semibold truncate">
               {user.username}
             </p>
-            <ChevronRight size={12} className="text-gray-600 `flex-shrink-0`" />
+            <ChevronRight size={12} className="text-gray-600 flex-shrink-0" />
           </div>
           <p className="text-xs text-gray-500 truncate">
             Followed by {user.followedBy[0]}
@@ -32,13 +32,13 @@ const SuggestionCard = ({ user }) => {
           </p>
         </div>
       </div>
-      <div className="flex items-center gap-1 sm:gap-2 ml-2 `flex-shrink-0`">
+      <div className="flex items-center gap-1 sm:gap-2 ml-2 flex-shrink-0">
         <button
           onClick={() => setFollowed(!followed)}
           className={`px-2 sm:px-4 py-1 sm:py-1.5 rounded-lg text-xs font-semibold transition-all duration-300 whitespace-nowrap ${
             followed
               ? "bg-white/10 text-white hover:bg-white/20"
-              : "`bg-gradient-to-r` from-purple-500 to-pink-500 text-white hover:shadow-lg hover:shadow-purple-500/25"
+              : "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-lg hover:shadow-purple-500/25"
           }`}
         >
           {followed ? "Following" : "Follow"}
@@ -61,14 +61,14 @@ const SuggestionsSidebar = () => {
   const displayedSuggestions = showAll ? suggestions : suggestions.slice(0, 5);
 
   return (
-    <div className="hidden lg:block w-80 ml-8 `flex-shrink-0`">
+    <div className="hidden lg:block w-80 ml-8 flex-shrink-0">
       <div className="sticky top-24 space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="relative `flex-shrink-0`">
+            <div className="relative flex-shrink-0">
               <img
                 src="https://i.pinimg.com/736x/43/d4/ae/43d4aeafda2af963392f20c2fd01a061.jpg"
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full `bg-gradient-to-r` from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-base sm:text-lg"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-base sm:text-lg"
               ></img>
               <div className="absolute bottom-0 right-0 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full border-2 border-gray-900"></div>
             </div>
@@ -81,7 +81,7 @@ const SuggestionsSidebar = () => {
               </p>
             </div>
           </div>
-          <button className="text-xs font-semibold `bg-gradient-to-r` from-purple-500 to-pink-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity `flex-shrink-0` ml-2">
+          <button className="text-xs font-semibold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity flex-shrink-0 ml-2">
             Switch
           </button>
         </div>

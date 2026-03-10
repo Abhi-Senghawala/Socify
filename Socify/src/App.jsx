@@ -1,4 +1,3 @@
-// App.jsx - Add Profile route
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { FeedProvider } from './context/FeedContext';
@@ -6,6 +5,8 @@ import Home from './pages/Home/Home';
 import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login'
 import Signup from './pages/Signup/Signup';
+import Messenger from './pages/Messenger/Messenger';
+import Search from './pages/Search/Search';
 function App() {
   return (
     <Router>
@@ -20,7 +21,9 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/profile/:username" element={<Profile />} />
-                <Route path="/search" element={<Home />} />
+                <Route path='/messenger' element={<Messenger />} />
+                <Route path='/messenger:chatId' element={<Messenger />} />
+                <Route path="/search" element={<Search />} />
                 <Route path="/reels" element={<Home />} />
                 <Route path="/notifications" element={<Home />} />
                 <Route path="/create" element={<Home />} />
