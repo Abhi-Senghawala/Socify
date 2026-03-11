@@ -10,8 +10,10 @@ import Messenger from "./pages/Messenger/Messenger";
 import Search from "./pages/Search/Search";
 import Settings from "./pages/Settings/Settings";
 import Notifications from "./pages/Notifications/Notifications";
+import Create from "./pages/Create/Create";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
+import Reels from "./pages/Reels/Reels";
 
 function App() {
   return (
@@ -41,8 +43,9 @@ function App() {
                         path="/notifications"
                         element={<Notifications />}
                       />
+                      <Route path="/create" element={<Create />} />
                       <Route path="/settings" element={<Settings />} />
-                      <Route path="/reels" element={<Home />} />
+                      <Route path="/reels" element={<Reels />} />
                       <Route path="/create" element={<Home />} />
                     </Routes>
                   </SocketProvider>

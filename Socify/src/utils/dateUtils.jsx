@@ -1,4 +1,3 @@
-// utils/dateUtils.jsx
 export const formatMessageTime = (timestamp) => {
   const date = new Date(timestamp);
   const now = new Date();
@@ -18,7 +17,6 @@ export const formatMessageTime = (timestamp) => {
   });
 };
 
-// You can also add other date utility functions here
 export const formatFullDate = (timestamp) => {
   const date = new Date(timestamp);
   return date.toLocaleDateString("en-US", {

@@ -43,7 +43,7 @@ const MobileTopbar = () => {
       <div className="absolute inset-x-0 -bottom-10 h-10 bg-gradient-to-b from-purple-600/20 to-transparent blur-xl"></div>
       <div className="relative z-10 flex items-center justify-between h-14 px-4">
         <div className="flex items-center gap-2">
-          <Link to="/" className="flex items-center text-center gap-2 group">
+          <Link to="/create" className="flex items-center text-center gap-2 group">
             <div className="relative">
               <CirclePlus className="text-white h-5 w-5" />
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur opacity-0 group-hover:opacity-50 transition-opacity"></div>
