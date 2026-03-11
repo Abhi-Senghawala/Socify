@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
-import Layout from "../../components/layout/Layout"
+import Layout from "../../components/layout/Layout";
 import { useReels } from "../../hooks/useReels";
 import ReelPlayer from "../../components/reels/ReelPlayer";
 import ReelOverlay from "../../components/reels/ReelOverlay";
 import ReelActions from "../../components/reels/ReelActions";
 import ReelComments from "../../components/reels/ReelComments";
 import ReelUploadModal from "../../components/reels/ReelUploadModal";
-import ReelSwipeIndicator from "../../components/reels/ReelSwipeIndicator";
 import ReelSkeleton from "../../components/reels/ReelSkeleton";
 import { ChevronUp, ChevronDown, Upload } from "lucide-react";
 
@@ -47,6 +46,17 @@ const Reels = () => {
       return () => container.removeEventListener("wheel", handleWheel);
     }
   }, [handleWheel]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--sat",
+      "env(safe-area-inset-top)",
+    );
+    document.documentElement.style.setProperty(
+      "--sab",
+      "env(safe-area-inset-bottom)",
+    );
+  }, []);
 
   if (loading) {
     return (
@@ -100,7 +110,7 @@ const Reels = () => {
               />
 
               {index > 0 && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 top-4">
+                <div className="absolute left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-12">
                   <ChevronUp
                     size={24}
                     className="text-white/60 animate-bounce"
@@ -108,7 +118,7 @@ const Reels = () => {
                 </div>
               )}
               {index < reels.length - 1 && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 bottom-24">
+                <div className="absolute left-1/2 transform -translate-x-1/2 bottom-1/2 translate-y-12">
                   <ChevronDown
                     size={24}
                     className="text-white/60 animate-bounce"
@@ -129,7 +139,7 @@ const Reels = () => {
 
           {!hasMore && reels.length > 0 && (
             <div className="h-screen snap-start snap-al relative bg-gray-900 flex items-center justify-center">
-              <div className="text-center">
+              <div className="text-center p-4">
                 <p className="text-white text-lg mb-2">You're all caught up!</p>
                 <p className="text-gray-400 text-sm">
                   Check back later for more reels
@@ -145,13 +155,13 @@ const Reels = () => {
           )}
         </div>
 
-        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-1">
+        <div className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-1 z-10">
           {reels.map((_, index) => (
             <div
               key={index}
-              className={`w-1 h-8 rounded-full transition-all ${
+              className={`w-1 h-4 sm:h-8 rounded-full transition-all ${
                 index === currentIndex
-                  ? "bg-gradient-to-r from-purple-500 to-pink-500"
+                  ? "bg-gradient-to-r from-purple-500 to-pink-500 h-6 sm:h-10"
                   : "bg-white/30"
               }`}
             />
