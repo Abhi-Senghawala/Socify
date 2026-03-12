@@ -1,6 +1,6 @@
 // This is a Signup page AuthForm
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Mail,
   Lock,
@@ -36,6 +36,18 @@ const AuthForm = ({
   passwordStrength,
 }) => {
   const strengthData = passwordStrength;
+
+  const navigate = useNavigate();
+
+  const handleSignin = (e) => {
+    e.preventDefault();
+    if (handleSubmit) {
+      handleSubmit(e);
+    }
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
+  };
 
   return (
     <div className="relative group mt-5 mb-5">
@@ -202,6 +214,7 @@ const AuthForm = ({
             type="submit"
             variant="primary"
             size="lg"
+            onClick={handleSignin}
             fullWidth
             loading={loading}
             disabled={loading}
