@@ -153,46 +153,6 @@ const LoginForm = ({
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </Button>
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/10"></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-transparent text-gray-400">
-                Or continue with
-              </span>
-            </div>
-          </div>
-          <div className="grid grid-cols-3 gap-3">
-            {[
-              {
-                provider: "google",
-                icon: Chrome,
-                color: "from-red-500 to-orange-500",
-              },
-              {
-                provider: "github",
-                icon: Github,
-                color: "from-gray-700 to-gray-900",
-              },
-              {
-                provider: "facebook",
-                icon: Facebook,
-                color: "from-blue-600 to-indigo-600",
-              },
-            ].map((social) => (
-              <button
-                key={social.provider}
-                onClick={() => handleSocialLogin(social.provider)}
-                className="relative group overflow-hidden p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/30 transition-all duration-300"
-              >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-r ${social.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
-                />
-                <social.icon className="w-5 h-5 text-white mx-auto group-hover:scale-110 transition-transform" />
-              </button>
-            ))}
-          </div>
           <p className="text-center text-sm text-gray-400">
             Don't have an account?{" "}
             <Link

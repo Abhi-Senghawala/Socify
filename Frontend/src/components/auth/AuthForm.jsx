@@ -39,12 +39,8 @@ const AuthForm = ({
 
   return (
     <div className="relative group mt-5 mb-5">
-      {/* Glow Effect */}
       <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-
-      {/* Glass Card */}
       <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 space-y-6">
-        {/* Success Animation */}
         {showSuccess && (
           <div className="absolute inset-0 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-3xl z-50 animate-fadeIn">
             <div className="text-center">
@@ -58,7 +54,6 @@ const AuthForm = ({
           </div>
         )}
 
-        {/* Header */}
         <div className="text-center">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             Get Started
@@ -67,23 +62,20 @@ const AuthForm = ({
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Username Input */}
           <Input
             type="text"
-            name="name"
-            placeholder=" "
-            value={formData.name}
+            name="username"
+            placeholder="Username"
+            value={formData.username}
             onChange={handleChange}
-            onFocus={() => setFocusedField("name")}
+            onFocus={() => setFocusedField("username")}
             onBlur={() => setFocusedField(null)}
             icon={User}
-            error={errors.name}
+            error={errors.username}
             label="Username"
             floating={true}
-            focused={focusedField === "name" || formData.name}
+            focused={focusedField === "username" || formData.username}
           />
-
-          {/* Email Input */}
           <Input
             type="email"
             name="email"
@@ -98,8 +90,6 @@ const AuthForm = ({
             floating={true}
             focused={focusedField === "email" || formData.email}
           />
-
-          {/* Password Input */}
           <div>
             <Input
               type={showPassword ? "text" : "password"}
@@ -147,8 +137,6 @@ const AuthForm = ({
               </div>
             )}
           </div>
-
-          {/* Confirm Password Input */}
           <Input
             type={showConfirmPassword ? "text" : "password"}
             name="confirmPassword"
@@ -170,7 +158,6 @@ const AuthForm = ({
             }
           />
 
-          {/* Terms Checkbox */}
           <div className="space-y-2">
             <label className="flex items-start gap-3 cursor-pointer group">
               <input
@@ -211,8 +198,6 @@ const AuthForm = ({
               </p>
             )}
           </div>
-
-          {/* Submit Button */}
           <Button
             type="submit"
             variant="primary"
@@ -228,50 +213,6 @@ const AuthForm = ({
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </Button>
-
-          {/* Social Signup */}
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/10"></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-transparent text-gray-400">
-                Or continue with
-              </span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-3">
-            {[
-              {
-                provider: "google",
-                icon: Chrome,
-                color: "from-red-500 to-orange-500",
-              },
-              {
-                provider: "github",
-                icon: Github,
-                color: "from-gray-700 to-gray-900",
-              },
-              {
-                provider: "facebook",
-                icon: Facebook,
-                color: "from-blue-600 to-indigo-600",
-              },
-            ].map((social) => (
-              <button
-                key={social.provider}
-                onClick={() => handleSocialSignup(social.provider)}
-                className="relative group overflow-hidden p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/30 transition-all duration-300"
-              >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-r ${social.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
-                />
-                <social.icon className="w-5 h-5 text-white mx-auto group-hover:scale-110 transition-transform" />
-              </button>
-            ))}
-          </div>
-
           <p className="text-center text-sm text-gray-400">
             Already have an account?{" "}
             <Link

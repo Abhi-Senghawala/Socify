@@ -1,9 +1,10 @@
 // This is useAuth component is for Signup page.
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 export const useAuth = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -20,11 +21,11 @@ export const useAuth = () => {
 
   // Form Validation Steps
   useEffect(() => {
-    if (formData.name && formData.name.length >= 2) setStep(2);
+    if (formData.username && formData.username.length >= 2) setStep(2);
     else setStep(1);
 
     if (formData.email && /\S+@\S+\.\S+/.test(formData.email)) setStep(3);
-    else if (formData.name && formData.name.length >= 2) setStep(2);
+    else if (formData.username && formData.username.length >= 2) setStep(2);
 
     if (formData.password && formData.password.length >= 8) setStep(4);
     else if (formData.email && /\S+@\S+\.\S+/.test(formData.email)) setStep(3);
@@ -49,8 +50,8 @@ export const useAuth = () => {
     const newErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = "Username is required";
-    } else if (formData.name.length < 2) {
+      newErrors.username = "Username is required";
+    } else if (formData.username.length < 2) {
       newErrors.name = "Username must be at least 2 characters";
     }
 
@@ -82,26 +83,15 @@ export const useAuth = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newErrors = validateForm();
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    setLoading(true);
-
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log("Form Submitted:", formData);
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 3000);
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        formData,
+      );
+
+      console.log(res.data);
     } catch (error) {
-      console.error("Signup error:", error);
-      setErrors({
-        submit: "Something went wrong. Please try again.",
-      });
-    } finally {
-      setLoading(false);
+      console.log(error?.response?.data || error.message);
     }
   };
 
