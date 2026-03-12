@@ -1,0 +1,98 @@
+Folder Structure:
+backend/
+│
+├── node_modules/
+│
+├── src/
+│   │
+│   ├── config/
+│   │   ├── db.js
+│   │   ├── socket.js
+│   │
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── userController.js
+│   │   ├── postController.js
+│   │   ├── reelController.js
+│   │   ├── messageController.js
+│   │   ├── notificationController.js
+│   │
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── Post.js
+│   │   ├── Reel.js
+│   │   ├── Message.js
+│   │   ├── Conversation.js
+│   │   ├── Notification.js
+│   │
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   ├── userRoutes.js
+│   │   ├── postRoutes.js
+│   │   ├── reelRoutes.js
+│   │   ├── messageRoutes.js
+│   │   ├── notificationRoutes.js
+│   │
+│   ├── middleware/
+│   │   ├── authMiddleware.js
+│   │   ├── errorMiddleware.js
+│   │   ├── uploadMiddleware.js
+│   │
+│   ├── utils/
+│   │   ├── generateToken.js
+│   │   ├── imageUpload.js
+│   │
+│   ├── sockets/
+│   │   ├── chatSocket.js
+│   │
+│   ├── uploads/
+│   │   ├── posts/
+│   │   ├── profiles/
+│   │   ├── reels/
+│   │
+│   ├── app.js
+│
+├── .env
+├── package.json
+├── server.js
+├── .gitignore
+
+
+Frontend/
+├── node_modules/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── auth/
+│   │   ├── common/
+│   │   ├── create/
+│   │   ├── feed/
+│   │   ├── layout/
+│   │   ├── messenger/
+│   │   ├── notifications/
+│   │   ├── posts/
+│   │   ├── profile/
+│   │   ├── reels/
+│   │   ├── search/
+│   │   ├── Settings/
+│   │   ├── stories/
+│   │   └── ui/
+│   ├── context/
+│   ├── hooks/
+│   ├── pages/
+│   ├── services/
+│   ├── Socket/
+│   ├── store/
+│   ├── utils/
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+└── vite.config.js

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import {
   Mail,
   Lock,
@@ -11,6 +11,7 @@ import {
   CheckCircle,
   ArrowRight,
   LogIn,
+  AlertCircle,
 } from "lucide-react";
 
 import Input from "../common/Input";
@@ -24,6 +25,8 @@ const LoginForm = ({
   rememberMe,
   focusedField,
   showSuccess,
+  serverError,
+  showAccountAlert,
   setShowPassword,
   setRememberMe,
   setFocusedField,
@@ -31,18 +34,6 @@ const LoginForm = ({
   handleSubmit,
   handleSocialLogin,
 }) => {
-  const navigate = useNavigate(); 
-
-  const handleSignin = (e) => {
-    e.preventDefault(); 
-    if (handleSubmit) {
-      handleSubmit(e);
-    }
-    setTimeout(() => {
-      navigate("/");
-    }, 2000); 
-  };
-
   return (
     <div className="relative group mt-10 mb-5">
       <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-1000"></div>
@@ -73,8 +64,51 @@ const LoginForm = ({
           <p className="text-gray-400 mt-2">Sign in to continue your journey</p>
         </div>
 
-        <form onSubmit={handleSignin} className="space-y-5">
-          {" "}
+        {showAccountAlert && (
+          <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-orange-500/20 to-pink-500/20 border border-orange-500/30 p-4 animate-slideDown">
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-pink-500/10 blur-xl"></div>
+            <div className="relative flex items-start gap-3">
+              <div className="flex-shrink-0">
+                <div className="p-1 rounded-lg bg-orange-500/20">
+                  <AlertCircle className="w-5 h-5 text-orange-400" />
+                </div>
+              </div>
+              <div className="flex-1">
+                <h4 className="text-orange-400 font-semibold text-sm mb-1">
+                  Account Not Found
+                </h4>
+                <p className="text-gray-300 text-sm">
+                  Your account is not created. Please{" "}
+                  <Link
+                    to="/signup"
+                    className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400 font-medium hover:underline"
+                  >
+                    create an account
+                  </Link>{" "}
+                  first to continue.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {serverError && !showAccountAlert && (
+          <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 p-4 animate-slideDown">
+            <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-pink-500/10 blur-xl"></div>
+            <div className="relative flex items-start gap-3">
+              <div className="flex-shrink-0">
+                <div className="p-1 rounded-lg bg-red-500/20">
+                  <AlertCircle className="w-5 h-5 text-red-400" />
+                </div>
+              </div>
+              <div className="flex-1">
+                <p className="text-gray-300 text-sm">{serverError}</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-5">
           <Input
             type="email"
             name="email"
@@ -88,7 +122,9 @@ const LoginForm = ({
             label="Email address"
             floating={true}
             focused={focusedField === "email" || formData.email}
+            disabled={loading}
           />
+
           <div>
             <Input
               type={showPassword ? "text" : "password"}
@@ -105,6 +141,7 @@ const LoginForm = ({
               focused={focusedField === "password" || formData.password}
               rightIcon={showPassword ? EyeOff : Eye}
               onRightIconClick={() => setShowPassword(!showPassword)}
+              disabled={loading}
             />
 
             <div className="flex justify-end mt-1">
@@ -116,6 +153,7 @@ const LoginForm = ({
               </Link>
             </div>
           </div>
+
           <div className="space-y-2">
             <label className="flex items-center gap-3 cursor-pointer group">
               <input
@@ -123,6 +161,7 @@ const LoginForm = ({
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
                 className="hidden"
+                disabled={loading}
               />
               <div
                 className={`w-5 h-5 rounded border transition-all duration-200 flex items-center justify-center ${
@@ -138,8 +177,9 @@ const LoginForm = ({
               </span>
             </label>
           </div>
+
           <Button
-            type="submit" 
+            type="submit"
             variant="primary"
             size="lg"
             fullWidth
@@ -148,8 +188,10 @@ const LoginForm = ({
             className="relative overflow-hidden group"
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
-              Sign In
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              {loading ? "Signing In..." : "Sign In"}
+              {!loading && (
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              )}
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </Button>
@@ -162,11 +204,6 @@ const LoginForm = ({
               Create account
             </Link>
           </p>
-          {errors.submit && (
-            <p className="text-sm text-pink-400 text-center animate-shake">
-              {errors.submit}
-            </p>
-          )}
         </form>
       </div>
     </div>
