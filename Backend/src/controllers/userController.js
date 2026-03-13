@@ -44,7 +44,7 @@ exports.getUserProfile = async (req, res) => {
         profilePic: user.profilePic,
         bio: user.bio,
         isPrivate: user.isPrivate,
-        postsCount: user.postCount,
+        postsCount: user.postsCount,
         followersCount: user.followers.length,
         followingCount: user.following.length,
         followers: user.followers,
