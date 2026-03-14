@@ -47,11 +47,32 @@ exports.register = async (req, res) => {
 
     const token = generateToken(user._id);
 
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      path: "/",
+    });
+
     res.status(201).json({
       success: true,
       message: "User registered successfully",
-      token,
-      user,
+      user: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        fullName: user.fullName,
+        profilePic: user.profilePic,
+        bio: user.bio,
+        gender: user.gender,
+        isPrivate: user.isPrivate,
+        followersCount: user.followers.length,
+        followingCount: user.following.length,
+        postsCount: user.postsCount,
+        isVerified: user.isVerified,
+        createdAt: user.createdAt,
+      },
     });
   } catch (error) {
     console.error("Registration error:", error);
@@ -70,8 +91,7 @@ exports.login = async (req, res) => {
     if (!user) {
       return res.status(401).json({
         success: false,
-        message:
-          "Account not found. Please check your email or register first.",
+        message: "Invalid email or password",
       });
     }
 
@@ -88,10 +108,17 @@ exports.login = async (req, res) => {
 
     const token = generateToken(user._id);
 
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      path: "/",
+    });
+
     res.json({
       success: true,
       message: "Login successful",
-      token,
       user: {
         _id: user._id,
         username: user.username,
@@ -118,12 +145,42 @@ exports.login = async (req, res) => {
   }
 };
 
+exports.logout = (req, res) => {
+  try {
+    res.cookie("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+    });
+
+    res.json({
+      success: true,
+      message: "Logged out successfully",
+    });
+  } catch (error) {
+    console.error("Logout error:", error);
+    res.status(500).json({
+      success: false,
+      error: "Server error during logout",
+    });
+  }
+};
+
 exports.getMe = async (req, res) => {
   try {
     const user = await User.findById(req.user._id)
       .select("-password")
       .populate("followers", "username profilePic fullName")
       .populate("following", "username profilePic fullName");
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
     res.json({
       success: true,
       user: {
@@ -147,6 +204,31 @@ exports.getMe = async (req, res) => {
     console.error("Get profile error:", error);
     res.status(500).json({
       success: false,
+      error: "Server error",
+    });
+  }
+};
+
+exports.checkAuth = async (req, res) => {
+  try {
+    const user = await User.finById(req.user.id).select("-password");
+
+    res.json({
+      success: true,
+      authenticated: true,
+      user: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        fullName: user.fullName,
+        profilePic: user.profilePic,
+      },
+    });
+  } catch (error) {
+    console.error("Check auth error:", error);
+    res.status(500).json({
+      success: false,
+      authenticated: false,
       error: "Server error",
     });
   }
